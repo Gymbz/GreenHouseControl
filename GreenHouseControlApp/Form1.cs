@@ -80,6 +80,7 @@ namespace WindowsFormsApp1
                     this.Refresh();
                 }
             }
+
             else
             {
                 panelControlParametres.Width = panelControlParametres.Width - 20;
