@@ -42,11 +42,22 @@ namespace WindowsFormsApp1
             this.TopBar = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelCO2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.labelN2 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.labelMoisture = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.panelControlParametres.SuspendLayout();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -120,7 +131,10 @@ namespace WindowsFormsApp1
             // 
             this.panelControlParametres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(230)))), ((int)(((byte)(203)))));
             this.panelControlParametres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelControlParametres.Controls.Add(this.labelTemperature);
+            this.panelControlParametres.Controls.Add(this.panel4);
+            this.panelControlParametres.Controls.Add(this.panel3);
+            this.panelControlParametres.Controls.Add(this.panel2);
+            this.panelControlParametres.Controls.Add(this.panel1);
             this.panelControlParametres.Location = new System.Drawing.Point(280, 50);
             this.panelControlParametres.Name = "panelControlParametres";
             this.panelControlParametres.Size = new System.Drawing.Size(1000, 671);
@@ -130,11 +144,12 @@ namespace WindowsFormsApp1
             // 
             this.labelTemperature.AutoSize = true;
             this.labelTemperature.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelTemperature.Location = new System.Drawing.Point(41, 66);
+            this.labelTemperature.Location = new System.Drawing.Point(3, 11);
             this.labelTemperature.Name = "labelTemperature";
             this.labelTemperature.Size = new System.Drawing.Size(176, 29);
             this.labelTemperature.TabIndex = 0;
             this.labelTemperature.Text = "TEMPERATURA";
+            this.labelTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelPreviewReports
             // 
@@ -166,6 +181,7 @@ namespace WindowsFormsApp1
             // 
             // TopBar
             // 
+            this.TopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(238)))), ((int)(((byte)(243)))));
             this.TopBar.Controls.Add(this.pictureBox2);
             this.TopBar.Controls.Add(this.pictureBox1);
             this.TopBar.Controls.Add(this.labelAppName);
@@ -201,11 +217,80 @@ namespace WindowsFormsApp1
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel1.Controls.Add(this.labelTemperature);
+            this.panel1.Location = new System.Drawing.Point(36, 17);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(450, 270);
+            this.panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel2.Controls.Add(this.labelCO2);
+            this.panel2.Location = new System.Drawing.Point(36, 313);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(450, 270);
+            this.panel2.TabIndex = 2;
+            // 
+            // labelCO2
+            // 
+            this.labelCO2.AutoSize = true;
+            this.labelCO2.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelCO2.Location = new System.Drawing.Point(3, 15);
+            this.labelCO2.Name = "labelCO2";
+            this.labelCO2.Size = new System.Drawing.Size(155, 29);
+            this.labelCO2.TabIndex = 0;
+            this.labelCO2.Text = "POZIOM CO2";
+            this.labelCO2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel3.Controls.Add(this.labelN2);
+            this.panel3.Location = new System.Drawing.Point(515, 313);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(450, 270);
+            this.panel3.TabIndex = 3;
+            // 
+            // labelN2
+            // 
+            this.labelN2.AutoSize = true;
+            this.labelN2.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelN2.Location = new System.Drawing.Point(3, 15);
+            this.labelN2.Name = "labelN2";
+            this.labelN2.Size = new System.Drawing.Size(139, 29);
+            this.labelN2.TabIndex = 0;
+            this.labelN2.Text = "POZIOM N2";
+            this.labelN2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel4.Controls.Add(this.labelMoisture);
+            this.panel4.Location = new System.Drawing.Point(515, 17);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(450, 270);
+            this.panel4.TabIndex = 4;
+            // 
+            // labelMoisture
+            // 
+            this.labelMoisture.AutoSize = true;
+            this.labelMoisture.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelMoisture.Location = new System.Drawing.Point(3, 11);
+            this.labelMoisture.Name = "labelMoisture";
+            this.labelMoisture.Size = new System.Drawing.Size(163, 29);
+            this.labelMoisture.TabIndex = 0;
+            this.labelMoisture.Text = "WILGOTNOŚĆ";
+            this.labelMoisture.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(223)))), ((int)(((byte)(216)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(200)))), ((int)(((byte)(190)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.ControlBox = false;
             this.Controls.Add(this.TopBar);
@@ -219,11 +304,18 @@ namespace WindowsFormsApp1
             this.Text = " ";
             this.panelMenu.ResumeLayout(false);
             this.panelControlParametres.ResumeLayout(false);
-            this.panelControlParametres.PerformLayout();
             this.TopBar.ResumeLayout(false);
             this.TopBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -243,6 +335,13 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Panel TopBar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label labelMoisture;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label labelN2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelCO2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
