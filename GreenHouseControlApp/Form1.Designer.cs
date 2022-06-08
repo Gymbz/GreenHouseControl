@@ -29,20 +29,15 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAppConfig = new System.Windows.Forms.Button();
             this.btnPreviewReports = new System.Windows.Forms.Button();
             this.btnControlParametres = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelControlParametres = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelPreviewReports = new System.Windows.Forms.Panel();
             this.panelAppConfig = new System.Windows.Forms.Panel();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
-            this.panelControlParametres.SuspendLayout();
-            this.panelPreviewReports.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,8 +65,6 @@ namespace WindowsFormsApp1
             this.btnAppConfig.TabIndex = 4;
             this.btnAppConfig.Text = "Konfiguracja";
             this.btnAppConfig.UseVisualStyleBackColor = false;
-            this.btnAppConfig.Click += new System.EventHandler(this.btnAppConfig_Click);
-            this.btnAppConfig.Leave += new System.EventHandler(this.btnAppConfig_Leave);
             // 
             // btnPreviewReports
             // 
@@ -85,8 +78,6 @@ namespace WindowsFormsApp1
             this.btnPreviewReports.TabIndex = 3;
             this.btnPreviewReports.Text = "Przegląd Raportów";
             this.btnPreviewReports.UseVisualStyleBackColor = false;
-            this.btnPreviewReports.Click += new System.EventHandler(this.btnPreviewReports_Click);
-            this.btnPreviewReports.Leave += new System.EventHandler(this.btnPreviewReports_Leave);
             // 
             // btnControlParametres
             // 
@@ -100,8 +91,6 @@ namespace WindowsFormsApp1
             this.btnControlParametres.TabIndex = 2;
             this.btnControlParametres.Text = "Zmiana Parametrów";
             this.btnControlParametres.UseVisualStyleBackColor = false;
-            this.btnControlParametres.Click += new System.EventHandler(this.btnControlParametres_Click);
-            this.btnControlParametres.Leave += new System.EventHandler(this.btnControlParametres_Leave);
             // 
             // panel2
             // 
@@ -116,41 +105,28 @@ namespace WindowsFormsApp1
             // 
             this.panelControlParametres.BackColor = System.Drawing.Color.DarkRed;
             this.panelControlParametres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelControlParametres.Controls.Add(this.panelPreviewReports);
-            this.panelControlParametres.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControlParametres.Location = new System.Drawing.Point(280, 0);
+            this.panelControlParametres.Location = new System.Drawing.Point(274, 0);
             this.panelControlParametres.Name = "panelControlParametres";
-            this.panelControlParametres.Size = new System.Drawing.Size(1000, 681);
+            this.panelControlParametres.Size = new System.Drawing.Size(1012, 681);
             this.panelControlParametres.TabIndex = 1;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panelPreviewReports
             // 
-            this.panelPreviewReports.BackColor = System.Drawing.Color.DarkOrange;
+            this.panelPreviewReports.BackColor = System.Drawing.Color.Orange;
             this.panelPreviewReports.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelPreviewReports.Controls.Add(this.panelAppConfig);
-            this.panelPreviewReports.Location = new System.Drawing.Point(0, 0);
+            this.panelPreviewReports.Location = new System.Drawing.Point(274, 0);
             this.panelPreviewReports.Name = "panelPreviewReports";
-            this.panelPreviewReports.Size = new System.Drawing.Size(1008, 689);
+            this.panelPreviewReports.Size = new System.Drawing.Size(1009, 698);
             this.panelPreviewReports.TabIndex = 2;
             // 
             // panelAppConfig
             // 
-            this.panelAppConfig.BackColor = System.Drawing.Color.Gold;
+            this.panelAppConfig.BackColor = System.Drawing.Color.GreenYellow;
             this.panelAppConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelAppConfig.Location = new System.Drawing.Point(0, 0);
+            this.panelAppConfig.Location = new System.Drawing.Point(274, 0);
             this.panelAppConfig.Name = "panelAppConfig";
-            this.panelAppConfig.Size = new System.Drawing.Size(1008, 689);
+            this.panelAppConfig.Size = new System.Drawing.Size(1006, 771);
             this.panelAppConfig.TabIndex = 3;
-            // 
-            // timer2
-            // 
-            this.timer2.Interval = 10;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -158,14 +134,14 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.panelControlParametres);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelAppConfig);
+            this.Controls.Add(this.panelPreviewReports);
+            this.Controls.Add(this.panelControlParametres);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Kontrola Klimatu Mikroszklarni";
+            this.Text = " ";
             this.panel1.ResumeLayout(false);
-            this.panelControlParametres.ResumeLayout(false);
-            this.panelPreviewReports.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -178,10 +154,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button btnAppConfig;
         private System.Windows.Forms.Button btnPreviewReports;
         private System.Windows.Forms.Panel panelControlParametres;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panelPreviewReports;
         private System.Windows.Forms.Panel panelAppConfig;
-        private System.Windows.Forms.Timer timer2;
     }
 }
 
