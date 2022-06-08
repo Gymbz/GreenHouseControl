@@ -12,14 +12,20 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        int panelControlParametresWidth = 1000;
+        bool panelControlParametresHidden;
+
         public Form1()
         {
             InitializeComponent();
+            panelControlParametres.Width = 0;
+            panelControlParametresHidden = true;
         }
 
         private void btnControlParametres_Click(object sender, EventArgs e)
         {
             btnControlParametres.BackColor = Color.Red;
+            timer1.Start();
         }
 
         private void btnPreviewReports_Click(object sender, EventArgs e)
@@ -45,6 +51,30 @@ namespace WindowsFormsApp1
         private void btnAppConfig_Leave(object sender, EventArgs e)
         {
             btnAppConfig.BackColor = Color.FloralWhite;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (panelControlParametresHidden)
+            {
+                panelControlParametres.Width = panelControlParametres.Width + 20;
+                if (panelControlParametres.Width >= panelControlParametresWidth)
+                {
+                    timer1.Stop();
+                    panelControlParametresHidden = false;
+                    this.Refresh();
+                }
+            }
+            else
+            {
+                panelControlParametres.Width = panelControlParametres.Width - 20;
+                if(panelControlParametres.Width == 0 )
+                {
+                    timer1.Stop();
+                    panelControlParametresHidden = true;
+                    this.Refresh();
+                }
+            }
         }
     }
 }
