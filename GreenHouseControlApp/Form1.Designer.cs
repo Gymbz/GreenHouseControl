@@ -37,7 +37,12 @@ namespace WindowsFormsApp1
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelControlParametres = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panelPreviewReports = new System.Windows.Forms.Panel();
+            this.panelAppConfig = new System.Windows.Forms.Panel();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
+            this.panelControlParametres.SuspendLayout();
+            this.panelPreviewReports.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -110,6 +115,8 @@ namespace WindowsFormsApp1
             // panelControlParametres
             // 
             this.panelControlParametres.BackColor = System.Drawing.Color.DarkRed;
+            this.panelControlParametres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelControlParametres.Controls.Add(this.panelPreviewReports);
             this.panelControlParametres.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControlParametres.Location = new System.Drawing.Point(280, 0);
             this.panelControlParametres.Name = "panelControlParametres";
@@ -120,6 +127,30 @@ namespace WindowsFormsApp1
             // 
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panelPreviewReports
+            // 
+            this.panelPreviewReports.BackColor = System.Drawing.Color.DarkOrange;
+            this.panelPreviewReports.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelPreviewReports.Controls.Add(this.panelAppConfig);
+            this.panelPreviewReports.Location = new System.Drawing.Point(0, 0);
+            this.panelPreviewReports.Name = "panelPreviewReports";
+            this.panelPreviewReports.Size = new System.Drawing.Size(1008, 689);
+            this.panelPreviewReports.TabIndex = 2;
+            // 
+            // panelAppConfig
+            // 
+            this.panelAppConfig.BackColor = System.Drawing.Color.Gold;
+            this.panelAppConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelAppConfig.Location = new System.Drawing.Point(0, 0);
+            this.panelAppConfig.Name = "panelAppConfig";
+            this.panelAppConfig.Size = new System.Drawing.Size(1008, 689);
+            this.panelAppConfig.TabIndex = 3;
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 10;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -133,6 +164,8 @@ namespace WindowsFormsApp1
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kontrola Klimatu Mikroszklarni";
             this.panel1.ResumeLayout(false);
+            this.panelControlParametres.ResumeLayout(false);
+            this.panelPreviewReports.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -146,6 +179,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button btnPreviewReports;
         private System.Windows.Forms.Panel panelControlParametres;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel panelPreviewReports;
+        private System.Windows.Forms.Panel panelAppConfig;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
