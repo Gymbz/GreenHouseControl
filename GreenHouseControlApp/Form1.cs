@@ -81,6 +81,7 @@ namespace WindowsFormsApp1
             timer1.Start();
         }
 
+        //NOTE: Current date and time showing on left bottom corner of the window
         private void timer1_Tick(object sender, EventArgs e)
         {
             DateHour.Text = DateTime.Now.ToString();
