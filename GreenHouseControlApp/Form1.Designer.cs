@@ -65,6 +65,8 @@ namespace WindowsFormsApp1
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ExitButton = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.radioC = new System.Windows.Forms.RadioButton();
+            this.radioF = new System.Windows.Forms.RadioButton();
             this.panelMenu.SuspendLayout();
             this.panelControlParametres.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -296,6 +298,8 @@ namespace WindowsFormsApp1
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel5.Controls.Add(this.radioF);
+            this.panel5.Controls.Add(this.radioC);
             this.panel5.Controls.Add(this.LanguagesList);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label7);
@@ -479,6 +483,30 @@ namespace WindowsFormsApp1
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // radioC
+            // 
+            this.radioC.AutoSize = true;
+            this.radioC.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioC.Location = new System.Drawing.Point(206, 111);
+            this.radioC.Name = "radioC";
+            this.radioC.Size = new System.Drawing.Size(51, 26);
+            this.radioC.TabIndex = 15;
+            this.radioC.TabStop = true;
+            this.radioC.Text = " °C";
+            this.radioC.UseVisualStyleBackColor = true;
+            // 
+            // radioF
+            // 
+            this.radioF.AutoSize = true;
+            this.radioF.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioF.Location = new System.Drawing.Point(263, 111);
+            this.radioF.Name = "radioF";
+            this.radioF.Size = new System.Drawing.Size(45, 26);
+            this.radioF.TabIndex = 16;
+            this.radioF.TabStop = true;
+            this.radioF.Text = "°F";
+            this.radioF.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -555,6 +583,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox LanguagesList;
+        private System.Windows.Forms.RadioButton radioF;
+        private System.Windows.Forms.RadioButton radioC;
     }
 }
 
