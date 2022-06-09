@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    //NOTE: Class created to make button increase in size when the mouse is over it
+    //and decrease in size while it's not there.
+    //It's only for visual purpose
+
     class ButtonHover
     {
         bool IsMouseOverTheButton;
@@ -30,6 +34,7 @@ namespace WindowsFormsApp1
             t = new Timer();
             t.Interval = 1;
             t.Tick += new EventHandler(Timer_tick);
+            t.Start();
         }
 
         private void LeaveMouse(object sender, EventArgs e)
@@ -52,7 +57,6 @@ namespace WindowsFormsApp1
             {
                 picturebox.Width = initialWidth;
                 picturebox.Height = initialHeight;
-                t.Stop();
             }
 
         }
@@ -60,7 +64,6 @@ namespace WindowsFormsApp1
         private void HoverMouse(object sender, EventArgs e)
         {
             IsMouseOverTheButton = true;
-            t.Start();
         }
 
     }
