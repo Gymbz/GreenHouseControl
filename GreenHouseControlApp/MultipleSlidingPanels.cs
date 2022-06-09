@@ -30,7 +30,6 @@ namespace WindowsFormsApp1
             extending = false;
 
             p.Width = 0;
-
             b.Click += new EventHandler(Button_clicked);
             ob1.Click += new EventHandler(ButtonOther_clicked);
             ob2.Click += new EventHandler(ButtonOther_clicked);
