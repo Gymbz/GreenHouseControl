@@ -15,12 +15,66 @@ namespace WindowsFormsApp1
         MultipleSlidingPanels p1, p2, p3;
         ButtonHover pB1;
 
+
+        #region TopBar
+        //Note: This section is responsible for moving the window of the app with mouse and for
+        //exit and fullscreen buttons
+
         int mouseX = 0;
         int mouseY = 0;
         int mouseinX;
         int mouseinY;
         bool mouseDown;
 
+        private void TopBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+
+            mouseinX = MousePosition.X - Bounds.X;
+            mouseinY = MousePosition.Y - Bounds.Y;
+        }
+        private void TopBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                mouseX = MousePosition.X - mouseinX;
+                mouseY = MousePosition.Y - mouseinY;
+
+                this.SetDesktopLocation(mouseX, mouseY);
+            }
+        }
+        private void TopBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+        //NOTE: For some reasong I had to make the same methods for label on the top bar
+        private void labelAppName_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+
+            mouseinX = MousePosition.X - Bounds.X;
+            mouseinY = MousePosition.Y - Bounds.Y;
+        }
+        private void labelAppName_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                mouseX = MousePosition.X - mouseinX;
+                mouseY = MousePosition.Y - mouseinY;
+
+                this.SetDesktopLocation(mouseX, mouseY);
+            }
+        }
+        private void labelAppName_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        #endregion
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -32,60 +86,7 @@ namespace WindowsFormsApp1
             DateHour.Text = DateTime.Now.ToString();
         }
 
-        private void TopBar_MouseDown(object sender, MouseEventArgs e)
-        {
-            mouseDown = true;
-
-            mouseinX = MousePosition.X - Bounds.X;
-            mouseinY = MousePosition.Y - Bounds.Y;
-        }
-
-        private void TopBar_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-
-        private void labelAppName_MouseDown(object sender, MouseEventArgs e)
-        {
-            mouseDown = true;
-
-            mouseinX = MousePosition.X - Bounds.X;
-            mouseinY = MousePosition.Y - Bounds.Y;
-        }
-
-        private void labelAppName_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
-            {
-                mouseX = MousePosition.X - mouseinX;
-                mouseY = MousePosition.Y - mouseinY;
-
-                this.SetDesktopLocation(mouseX, mouseY);
-            }
-        }
-
-        private void labelAppName_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
-        private void TopBar_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
-            {
-                mouseX = MousePosition.X - mouseinX;
-                mouseY = MousePosition.Y - mouseinY;
-
-                this.SetDesktopLocation(mouseX, mouseY);
-            }
-        }
+   
 
 
         public Form1()
