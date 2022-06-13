@@ -50,7 +50,10 @@ namespace WindowsFormsApp1
             this.panelPreviewReports = new System.Windows.Forms.Panel();
             this.panelAppConfig = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.LanguagesList = new System.Windows.Forms.ListBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.GreeHouseCommunicationFrequencyChoice = new System.Windows.Forms.ComboBox();
+            this.radioF = new System.Windows.Forms.RadioButton();
+            this.radioC = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,8 +68,6 @@ namespace WindowsFormsApp1
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ExitButton = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.radioC = new System.Windows.Forms.RadioButton();
-            this.radioF = new System.Windows.Forms.RadioButton();
             this.panelMenu.SuspendLayout();
             this.panelControlParametres.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -98,11 +99,11 @@ namespace WindowsFormsApp1
             // 
             this.DateHour.AutoSize = true;
             this.DateHour.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DateHour.Location = new System.Drawing.Point(63, 689);
+            this.DateHour.Location = new System.Drawing.Point(60, 689);
             this.DateHour.Name = "DateHour";
-            this.DateHour.Size = new System.Drawing.Size(122, 22);
+            this.DateHour.Size = new System.Drawing.Size(189, 22);
             this.DateHour.TabIndex = 5;
-            this.DateHour.Text = "data i godzina";
+            this.DateHour.Text = "dd.mm.yyyy hh:mm:ss";
             this.DateHour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnAppConfig
@@ -298,9 +299,10 @@ namespace WindowsFormsApp1
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel5.Controls.Add(this.comboBox2);
+            this.panel5.Controls.Add(this.GreeHouseCommunicationFrequencyChoice);
             this.panel5.Controls.Add(this.radioF);
             this.panel5.Controls.Add(this.radioC);
-            this.panel5.Controls.Add(this.LanguagesList);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label7);
             this.panel5.Controls.Add(this.label6);
@@ -315,18 +317,56 @@ namespace WindowsFormsApp1
             this.panel5.Size = new System.Drawing.Size(912, 612);
             this.panel5.TabIndex = 0;
             // 
-            // LanguagesList
+            // comboBox2
             // 
-            this.LanguagesList.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LanguagesList.FormattingEnabled = true;
-            this.LanguagesList.ItemHeight = 22;
-            this.LanguagesList.Items.AddRange(new object[] {
-            "Polski",
-            "English"});
-            this.LanguagesList.Location = new System.Drawing.Point(158, 50);
-            this.LanguagesList.Name = "LanguagesList";
-            this.LanguagesList.Size = new System.Drawing.Size(135, 48);
-            this.LanguagesList.TabIndex = 14;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(158, 51);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 18;
+            // 
+            // GreeHouseCommunicationFrequencyChoice
+            // 
+            this.GreeHouseCommunicationFrequencyChoice.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GreeHouseCommunicationFrequencyChoice.FormattingEnabled = true;
+            this.GreeHouseCommunicationFrequencyChoice.Items.AddRange(new object[] {
+            "sekunda",
+            "30 sekund",
+            "1 minuta",
+            "2 minuty",
+            "5 minut",
+            "10 minut",
+            "15 minut",
+            "30 minut",
+            "godzina"});
+            this.GreeHouseCommunicationFrequencyChoice.Location = new System.Drawing.Point(263, 259);
+            this.GreeHouseCommunicationFrequencyChoice.Name = "GreeHouseCommunicationFrequencyChoice";
+            this.GreeHouseCommunicationFrequencyChoice.Size = new System.Drawing.Size(121, 24);
+            this.GreeHouseCommunicationFrequencyChoice.TabIndex = 17;
+            // 
+            // radioF
+            // 
+            this.radioF.AutoSize = true;
+            this.radioF.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioF.Location = new System.Drawing.Point(263, 111);
+            this.radioF.Name = "radioF";
+            this.radioF.Size = new System.Drawing.Size(45, 26);
+            this.radioF.TabIndex = 16;
+            this.radioF.TabStop = true;
+            this.radioF.Text = "°F";
+            this.radioF.UseVisualStyleBackColor = true;
+            // 
+            // radioC
+            // 
+            this.radioC.AutoSize = true;
+            this.radioC.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.radioC.Location = new System.Drawing.Point(206, 111);
+            this.radioC.Name = "radioC";
+            this.radioC.Size = new System.Drawing.Size(51, 26);
+            this.radioC.TabIndex = 15;
+            this.radioC.TabStop = true;
+            this.radioC.Text = " °C";
+            this.radioC.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -481,31 +521,8 @@ namespace WindowsFormsApp1
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // radioC
-            // 
-            this.radioC.AutoSize = true;
-            this.radioC.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioC.Location = new System.Drawing.Point(206, 111);
-            this.radioC.Name = "radioC";
-            this.radioC.Size = new System.Drawing.Size(51, 26);
-            this.radioC.TabIndex = 15;
-            this.radioC.TabStop = true;
-            this.radioC.Text = " °C";
-            this.radioC.UseVisualStyleBackColor = true;
-            // 
-            // radioF
-            // 
-            this.radioF.AutoSize = true;
-            this.radioF.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.radioF.Location = new System.Drawing.Point(263, 111);
-            this.radioF.Name = "radioF";
-            this.radioF.Size = new System.Drawing.Size(45, 26);
-            this.radioF.TabIndex = 16;
-            this.radioF.TabStop = true;
-            this.radioF.Text = "°F";
-            this.radioF.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -514,10 +531,10 @@ namespace WindowsFormsApp1
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(200)))), ((int)(((byte)(190)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.ControlBox = false;
-            this.Controls.Add(this.panelMenu);
-            this.Controls.Add(this.panelAppConfig);
-            this.Controls.Add(this.panelPreviewReports);
             this.Controls.Add(this.panelControlParametres);
+            this.Controls.Add(this.panelAppConfig);
+            this.Controls.Add(this.panelMenu);
+            this.Controls.Add(this.panelPreviewReports);
             this.Controls.Add(this.TopBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
@@ -582,9 +599,10 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox LanguagesList;
         private System.Windows.Forms.RadioButton radioF;
         private System.Windows.Forms.RadioButton radioC;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox GreeHouseCommunicationFrequencyChoice;
     }
 }
 
