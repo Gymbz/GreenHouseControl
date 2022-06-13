@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +30,7 @@ namespace WindowsFormsApp1
 
         private void TopBar_MouseDown(object sender, MouseEventArgs e)
         {
+
             mouseDown = true;
 
             mouseinX = MousePosition.X - Bounds.X;
@@ -72,6 +75,44 @@ namespace WindowsFormsApp1
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        #endregion
+
+        #region SerialPortCommunication
+
+        public SerialPort nanoPort;
+        public static string ArduinoCurrentTemperature;
+
+        private void OpenCOMPort()
+        {
+            nanoPort = new SerialPort();
+            nanoPort.BaudRate = 9600;
+            nanoPort.PortName = "COM 3";
+
+            try
+            {
+                nanoPort.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nalezy podlaczyc urzadzenie do portu szeregowego!");
+                return;
+            }
+        }
+
+        private async Task GetArduinoParametres()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            nanoPort.DiscardInBuffer();
+
+            nanoPort.Write("R");
+            watch.Start();
+            ArduinoCurrentTemperature = await Task.Run(() => nanoPort.ReadLine());
+            watch.Stop();
+
+            TemperatureValue.Text = ArduinoCurrentTemperature;
         }
 
         #endregion
