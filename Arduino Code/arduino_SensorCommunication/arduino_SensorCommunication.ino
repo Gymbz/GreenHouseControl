@@ -1,3 +1,4 @@
+#include<Wire.h>
 #include"DFRobot_SHTC3.h"
 
 DFRobot_SHTC3 sensor;
@@ -9,7 +10,7 @@ float temperature,  humidity;
 void setup() {
    Serial.begin(9600);
    sensor.begin();
-   
+   sensor.wakeup();
 }
 
 void loop() {
@@ -19,7 +20,6 @@ void loop() {
       receiveVal = Serial.readString();
       if (receiveVal.startsWith("T"))
         {
-           sensor.wakeup();
             /**
              * 
              *    mode  Configure sensor working mode, vary among different sensors 
@@ -36,12 +36,12 @@ void loop() {
             } 
            else  
             {
-              Serial.print(temperature);
+              Serial.println(temperature, 1);
+              delay(1000);
             }
         }
         if (receiveVal.startsWith("H"))
         {
-           sensor.wakeup();
            humidity = sensor.getHumidity(/*mode = */ PRECISION_HIGH_CLKSTRETCH_OFF); 
            if(temperature == MODE_ERR)
             {
@@ -49,9 +49,11 @@ void loop() {
             } 
            else  
             {
-              Serial.print(humidity);
+              Serial.println(humidity, 1);
+              delay(1000);
             }
         }
+
     
     
     

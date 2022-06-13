@@ -37,15 +37,17 @@ namespace WindowsFormsApp1
             this.btnControlParametres = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.panelControlParametres = new System.Windows.Forms.Panel();
+            this.labelDisplayUpdateTime = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.humidityValue = new System.Windows.Forms.Label();
             this.labelMoisture = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelN2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.levelCO2 = new System.Windows.Forms.Label();
+            this.CO2Value = new System.Windows.Forms.Label();
             this.labelCO2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.TemperatureValue = new System.Windows.Forms.Label();
+            this.temperatureValue = new System.Windows.Forms.Label();
             this.labelTemperature = new System.Windows.Forms.Label();
             this.panelPreviewReports = new System.Windows.Forms.Panel();
             this.panelAppConfig = new System.Windows.Forms.Panel();
@@ -54,7 +56,6 @@ namespace WindowsFormsApp1
             this.GreeHouseCommunicationFrequencyChoice = new System.Windows.Forms.ComboBox();
             this.radioF = new System.Windows.Forms.RadioButton();
             this.radioC = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@ namespace WindowsFormsApp1
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ExitButton = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.COMresponsetime = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.panelControlParametres.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -164,6 +166,7 @@ namespace WindowsFormsApp1
             // 
             this.panelControlParametres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(230)))), ((int)(((byte)(203)))));
             this.panelControlParametres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelControlParametres.Controls.Add(this.labelDisplayUpdateTime);
             this.panelControlParametres.Controls.Add(this.panel4);
             this.panelControlParametres.Controls.Add(this.panel3);
             this.panelControlParametres.Controls.Add(this.panel2);
@@ -173,14 +176,36 @@ namespace WindowsFormsApp1
             this.panelControlParametres.Size = new System.Drawing.Size(1000, 671);
             this.panelControlParametres.TabIndex = 1;
             // 
+            // labelDisplayUpdateTime
+            // 
+            this.labelDisplayUpdateTime.AutoSize = true;
+            this.labelDisplayUpdateTime.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelDisplayUpdateTime.Location = new System.Drawing.Point(674, 639);
+            this.labelDisplayUpdateTime.Name = "labelDisplayUpdateTime";
+            this.labelDisplayUpdateTime.Size = new System.Drawing.Size(256, 22);
+            this.labelDisplayUpdateTime.TabIndex = 5;
+            this.labelDisplayUpdateTime.Text = "Czas do następnej aktualizacji: ";
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel4.Controls.Add(this.humidityValue);
             this.panel4.Controls.Add(this.labelMoisture);
             this.panel4.Location = new System.Drawing.Point(515, 17);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(450, 270);
             this.panel4.TabIndex = 4;
+            // 
+            // humidityValue
+            // 
+            this.humidityValue.AutoSize = true;
+            this.humidityValue.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.humidityValue.Location = new System.Drawing.Point(4, 40);
+            this.humidityValue.Name = "humidityValue";
+            this.humidityValue.Size = new System.Drawing.Size(86, 22);
+            this.humidityValue.TabIndex = 2;
+            this.humidityValue.Text = "400 ppm";
+            this.humidityValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelMoisture
             // 
@@ -216,23 +241,23 @@ namespace WindowsFormsApp1
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
-            this.panel2.Controls.Add(this.levelCO2);
+            this.panel2.Controls.Add(this.CO2Value);
             this.panel2.Controls.Add(this.labelCO2);
             this.panel2.Location = new System.Drawing.Point(36, 313);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(450, 270);
             this.panel2.TabIndex = 2;
             // 
-            // levelCO2
+            // CO2Value
             // 
-            this.levelCO2.AutoSize = true;
-            this.levelCO2.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.levelCO2.Location = new System.Drawing.Point(4, 53);
-            this.levelCO2.Name = "levelCO2";
-            this.levelCO2.Size = new System.Drawing.Size(86, 22);
-            this.levelCO2.TabIndex = 1;
-            this.levelCO2.Text = "400 ppm";
-            this.levelCO2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CO2Value.AutoSize = true;
+            this.CO2Value.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CO2Value.Location = new System.Drawing.Point(4, 53);
+            this.CO2Value.Name = "CO2Value";
+            this.CO2Value.Size = new System.Drawing.Size(86, 22);
+            this.CO2Value.TabIndex = 1;
+            this.CO2Value.Text = "400 ppm";
+            this.CO2Value.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelCO2
             // 
@@ -248,23 +273,24 @@ namespace WindowsFormsApp1
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
-            this.panel1.Controls.Add(this.TemperatureValue);
+            this.panel1.Controls.Add(this.COMresponsetime);
+            this.panel1.Controls.Add(this.temperatureValue);
             this.panel1.Controls.Add(this.labelTemperature);
             this.panel1.Location = new System.Drawing.Point(36, 17);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 270);
             this.panel1.TabIndex = 1;
             // 
-            // TemperatureValue
+            // temperatureValue
             // 
-            this.TemperatureValue.AutoSize = true;
-            this.TemperatureValue.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TemperatureValue.Location = new System.Drawing.Point(4, 40);
-            this.TemperatureValue.Name = "TemperatureValue";
-            this.TemperatureValue.Size = new System.Drawing.Size(83, 22);
-            this.TemperatureValue.TabIndex = 2;
-            this.TemperatureValue.Text = "25 stopni";
-            this.TemperatureValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.temperatureValue.AutoSize = true;
+            this.temperatureValue.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.temperatureValue.Location = new System.Drawing.Point(5, 40);
+            this.temperatureValue.Name = "temperatureValue";
+            this.temperatureValue.Size = new System.Drawing.Size(49, 22);
+            this.temperatureValue.TabIndex = 2;
+            this.temperatureValue.Text = "xx.xx";
+            this.temperatureValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelTemperature
             // 
@@ -303,7 +329,6 @@ namespace WindowsFormsApp1
             this.panel5.Controls.Add(this.GreeHouseCommunicationFrequencyChoice);
             this.panel5.Controls.Add(this.radioF);
             this.panel5.Controls.Add(this.radioC);
-            this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label7);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.label5);
@@ -330,10 +355,10 @@ namespace WindowsFormsApp1
             this.GreeHouseCommunicationFrequencyChoice.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.GreeHouseCommunicationFrequencyChoice.FormattingEnabled = true;
             this.GreeHouseCommunicationFrequencyChoice.Items.AddRange(new object[] {
-            "sekunda",
-            "30 sekund",
-            "1 minuta",
-            "2 minuty",
+            "5 sekund",
+            "10 sekund",
+            "30  sekund",
+            "minuta",
             "5 minut",
             "10 minut",
             "15 minut",
@@ -343,6 +368,7 @@ namespace WindowsFormsApp1
             this.GreeHouseCommunicationFrequencyChoice.Name = "GreeHouseCommunicationFrequencyChoice";
             this.GreeHouseCommunicationFrequencyChoice.Size = new System.Drawing.Size(121, 24);
             this.GreeHouseCommunicationFrequencyChoice.TabIndex = 17;
+            this.GreeHouseCommunicationFrequencyChoice.SelectedIndexChanged += new System.EventHandler(this.GreeHouseCommunicationFrequencyChoice_SelectedIndexChanged);
             // 
             // radioF
             // 
@@ -367,17 +393,6 @@ namespace WindowsFormsApp1
             this.radioC.TabStop = true;
             this.radioC.Text = " °C";
             this.radioC.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(3, 231);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(122, 22);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "data i godzina";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -524,6 +539,17 @@ namespace WindowsFormsApp1
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // COMresponsetime
+            // 
+            this.COMresponsetime.AutoSize = true;
+            this.COMresponsetime.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.COMresponsetime.Location = new System.Drawing.Point(398, 247);
+            this.COMresponsetime.Name = "COMresponsetime";
+            this.COMresponsetime.Size = new System.Drawing.Size(49, 22);
+            this.COMresponsetime.TabIndex = 3;
+            this.COMresponsetime.Text = "xx.xx";
+            this.COMresponsetime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,6 +570,7 @@ namespace WindowsFormsApp1
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();
             this.panelControlParametres.ResumeLayout(false);
+            this.panelControlParametres.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -585,13 +612,12 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelCO2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label levelCO2;
-        private System.Windows.Forms.Label TemperatureValue;
+        private System.Windows.Forms.Label CO2Value;
+        private System.Windows.Forms.Label temperatureValue;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label DateHour;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label labelConfig;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -603,6 +629,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.RadioButton radioC;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox GreeHouseCommunicationFrequencyChoice;
+        private System.Windows.Forms.Label labelDisplayUpdateTime;
+        private System.Windows.Forms.Label humidityValue;
+        private System.Windows.Forms.Label COMresponsetime;
     }
 }
 
