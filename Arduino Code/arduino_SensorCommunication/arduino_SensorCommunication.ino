@@ -37,27 +37,24 @@ void loop() {
              *                  PRECISION_LOW_CLKSTRETCH_OFF                              Clock Stretching Disabled & Low Power
              */
            temperature = sensor.getTemperature(/*mode = */ PRECISION_HIGH_CLKSTRETCH_OFF);
-           if(temperature == MODE_ERR)
-            {
-              Serial.println("Incorrect mode configuration to get temperature");
-            } 
-           else  
-            {
-              Serial.println(temperature, 1);
-            }
-        }
-        if (receiveVal.startsWith("H"))
-        {
            humidity = sensor.getHumidity(/*mode = */ PRECISION_HIGH_CLKSTRETCH_OFF); 
            if(temperature == MODE_ERR)
             {
               Serial.println("Incorrect mode configuration to get temperature");
             } 
-           else  
+           else if(humidity == MODE_ERR)
             {
-              Serial.println(humidity, 1);
+              Serial.println("Incorrect mode configuration to get humidity");
+
             }
+            else{
+              Serial.println(temperature, 1);
+              Serial.println(humidity, 1);            
+              }
         }
+    
+           
+    
 
     
     

@@ -22,11 +22,12 @@ namespace WindowsFormsApp1
         MultipleSlidingPanels p1, p2, p3;
         ButtonHover pB1;
 
-        string serialDataIn;
+        string serialDataIn1;
+        string serialDataIn2;
 
         #region TopBar
-        //Note: This section is responsible for moving the window of the app with mouse and for
-        //exit and fullscreen buttons
+        //  This section is responsible for moving the window of the app with mouse and for
+        //  exit and fullscreen buttons
 
         int mouseX = 0;
         int mouseY = 0;
@@ -56,7 +57,7 @@ namespace WindowsFormsApp1
         {
             mouseDown = false;
         }
-        //NOTE: For some reasong I had to make the same methods for label on the top bar
+        //  NOTE: For some reason I had to make the same methods for label on the top bar
         private void labelAppName_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
@@ -88,30 +89,9 @@ namespace WindowsFormsApp1
         #region ApplicationConfiguration
 
 
-
-        #endregion
-        void getAvailablePortNames()
-        {
-            string[] portNames = SerialPort.GetPortNames();
-            availablePortsBox.Items.AddRange(portNames);
-        }
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //Initialize all config
-            GreeHouseCommunicationFrequencyChoice.SelectedIndex = 1;
-
-
-
-            timer1.Start();
-
-
-        }
-
         private void GreeHouseCommunicationFrequencyChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             switch (GreeHouseCommunicationFrequencyChoice.SelectedIndex)
             {
                 case 0:
@@ -147,6 +127,29 @@ namespace WindowsFormsApp1
             countdownTimer = updateCountdownTimer;
         }
 
+        #endregion
+
+        #region ParameterControl
+        float measuredTemperature;
+        float measuredHumidity;
+        float measuredCO2;
+        float measuredN2;
+
+
+        Parameter Temperature;
+        Parameter Humidity;
+        Parameter CO2;
+        Parameter N2;
+
+
+        #endregion
+
+        #region SerialCommunication 
+        void getAvailablePortNames()
+        {
+            string[] portNames = SerialPort.GetPortNames();
+            availablePortsBox.Items.AddRange(portNames);
+        }
         private void btnOpenPort_Click(object sender, EventArgs e)
         {
             try
@@ -166,7 +169,7 @@ namespace WindowsFormsApp1
                 }
             }
 
-            catch(UnauthorizedAccessException)
+            catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("Nieautoryzowany dostęp");
             }
@@ -183,15 +186,37 @@ namespace WindowsFormsApp1
         private void arduinoPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
-            serialDataIn = arduinoPort.ReadLine();
+            serialDataIn1 = arduinoPort.ReadLine();
+            serialDataIn2 = arduinoPort.ReadLine();
             this.Invoke(new EventHandler(ShowData));
-        }     
+        }
 
         private void ShowData(object sender, EventArgs e)
         {
             temperatureValue.Text = "";
-            temperatureValue.Text += serialDataIn;
+            temperatureValue.Text += serialDataIn1;
+
+            humidityValue.Text = "";
+            humidityValue.Text += serialDataIn2;
         }
+
+        #endregion
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //Initialize all config
+            GreeHouseCommunicationFrequencyChoice.SelectedIndex = 1;
+
+
+
+            timer1.Start();
+
+
+        }
+
+
+
 
         private void temperatureValue_TextChanged(object sender, EventArgs e)
         {
@@ -199,14 +224,26 @@ namespace WindowsFormsApp1
             temperatureValue.ScrollToCaret();
         }
 
+        private void humidityValue_TextChanged(object sender, EventArgs e)
+        {
+            humidityValue.SelectionStart = humidityValue.Text.Length;
+            humidityValue.ScrollToCaret();
+        }
 
-        //NOTE: Current date and time showing on left bottom corner of the window
+        private void applyTemperatureSettings_Click(object sender, EventArgs e)
+        {
+            //measuredTemperature = (float)Convert.ToDouble(temperatureValue.Text);
+        }
+
+
+
+        //  NOTE: Current date and time showing on left bottom corner of the window
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //Show current date and time from computer
+            //  Show current date and time from computer
             DateHour.Text = DateTime.Now.ToString();
 
-            //Show countdown for the next parametres update
+            //  Show countdown for the next parametres update
   
             countdownTimer--;
             if (countdownTimer <0)
@@ -217,7 +254,7 @@ namespace WindowsFormsApp1
             string strRemaining = timeRemaining.ToString(@"m\:ss");
             labelDisplayUpdateTime.Text = string.Format("Czas do następnej aktualizacji: {0}", strRemaining);  
               
-            //Update parametres from Arduino (via serial port)
+            //  Update parametres from Arduino (via serial port)
             if (minuteTimer > updateCountdownTimer)
             {
                 if (arduinoPort.IsOpen)
@@ -227,6 +264,7 @@ namespace WindowsFormsApp1
                 minuteTimer = 0;
             }
             minuteTimer++;
+
         }
 
    
@@ -242,6 +280,7 @@ namespace WindowsFormsApp1
             p2 = new MultipleSlidingPanels(ref panelPreviewReports, ref btnPreviewReports, ref btnControlParametres, ref btnAppConfig);
             p3 = new MultipleSlidingPanels(ref panelAppConfig, ref btnAppConfig, ref btnControlParametres, ref btnPreviewReports);
             pB1 = new ButtonHover(ref ExitButton);
+            //Temperature = new Parameter(ref measuredTemperature, ref setTemperature, ref increaseTemperature, ref decreaseTemperature);
         }
 
 

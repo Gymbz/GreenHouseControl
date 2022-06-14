@@ -8,9 +8,9 @@ using System.Windows.Forms;
 namespace WindowsFormsApp1
 {
 
-    //Note: all the panels that show up smoothly when option on the side menu is picked
-    //This class simply uses button that is responsible for sliding the panel, and 
-    //buttons from other panels, which will trigger hiding of this one.
+    //  All the panels that show up smoothly when option on the side menu is picked.
+    //  This class simply uses button that is responsible for sliding the panel, and 
+    //  buttons from other panels, which will trigger hiding of this one.
 
     class MultipleSlidingPanels
     {
@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             p.Width = 0;
             b.Click += new EventHandler(Button_clicked);
 
-            //Both other buttons trigger the same event
+            //  Both other buttons trigger the same event
             ob1.Click += new EventHandler(ButtonOther_clicked);
             ob2.Click += new EventHandler(ButtonOther_clicked);
 

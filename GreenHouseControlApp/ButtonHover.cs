@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    //NOTE: Class created to make button increase in size when the mouse is over it
-    //and decrease in size while it's not there.
-    //It's only for visual purpose
+    //  Class created to make button increase in size when the mouse is over it
+    //  and decrease in size while it's not there.
+    //  It's only for visual purpose
 
     class ButtonHover
     {
