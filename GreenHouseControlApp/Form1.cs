@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
         MultipleSlidingPanels p1, p2, p3;
         ButtonHover pB1;
 
+        string serialDataIn;
 
         #region TopBar
         //Note: This section is responsible for moving the window of the app with mouse and for
@@ -84,56 +85,24 @@ namespace WindowsFormsApp1
 
         #endregion
 
-        #region SerialPortCommunication
+        #region ApplicationConfiguration
 
-        public SerialPort nanoPort = new SerialPort();
-        public static string ArduinoCurrentTemperature;
-        public static string ArduinoCurrentHumidity;
 
-        private void OpenCOMPort()
-        {
-            nanoPort.BaudRate = 115200;
-            nanoPort.PortName = "COM3";
 
-            try
-            {
-                
-                nanoPort.Open();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nalezy podlaczyc urzadzenie do portu szeregowego!");
-                return;
-            }
-        }
-
-        private async Task GetArduinoParametres()
-        {
-            Stopwatch watch = new Stopwatch();
-
-            nanoPort.DiscardInBuffer();
-
-            nanoPort.Write("T");
-            watch.Start();
-            ArduinoCurrentTemperature = await Task.Run(() => nanoPort.ReadLine());
-            watch.Stop();
-
-            temperatureValue.Text = ArduinoCurrentTemperature;
-            COMresponsetime.Text = string.Format("{0} msec", watch.ElapsedMilliseconds);
-
-            //   nanoPort.Write("H");
-            //watch.Start();
-            // ArduinoCurrentHumidity = await Task.Run(() => nanoPort.ReadLine());
-            // watch.Stop();
-            //humidityValue.Text = ArduinoCurrentHumidity;
-        }
-      
         #endregion
+        void getAvailablePortNames()
+        {
+            string[] portNames = SerialPort.GetPortNames();
+            availablePortsBox.Items.AddRange(portNames);
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //Initialize all config
             GreeHouseCommunicationFrequencyChoice.SelectedIndex = 1;
+
+
 
             timer1.Start();
 
@@ -178,6 +147,58 @@ namespace WindowsFormsApp1
             countdownTimer = updateCountdownTimer;
         }
 
+        private void btnOpenPort_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (availablePortsBox.SelectedItem == null) warningPort.Text = "Proszę wybrać port!";
+                else
+                {
+                    arduinoPort.PortName = availablePortsBox.Text;
+                    arduinoPort.BaudRate = 9600;
+                    arduinoPort.Open();
+
+                    btnClosePort.Enabled = true;
+                    btnOpenPort.Enabled = false;
+
+                    availablePortsBox.Enabled = false;
+                    warningPort.Text = "";
+                }
+            }
+
+            catch(UnauthorizedAccessException)
+            {
+                MessageBox.Show("Nieautoryzowany dostęp");
+            }
+        }
+
+        private void btnClosePort_Click(object sender, EventArgs e)
+        {
+            arduinoPort.Close();
+            btnClosePort.Enabled = false;
+            btnOpenPort.Enabled = true;
+            availablePortsBox.Enabled = true;
+        }
+
+        private void arduinoPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+
+            serialDataIn = arduinoPort.ReadLine();
+            this.Invoke(new EventHandler(ShowData));
+        }     
+
+        private void ShowData(object sender, EventArgs e)
+        {
+            temperatureValue.Text = "";
+            temperatureValue.Text += serialDataIn;
+        }
+
+        private void temperatureValue_TextChanged(object sender, EventArgs e)
+        {
+            temperatureValue.SelectionStart = temperatureValue.Text.Length;
+            temperatureValue.ScrollToCaret();
+        }
+
 
         //NOTE: Current date and time showing on left bottom corner of the window
         private void timer1_Tick(object sender, EventArgs e)
@@ -199,7 +220,10 @@ namespace WindowsFormsApp1
             //Update parametres from Arduino (via serial port)
             if (minuteTimer > updateCountdownTimer)
             {
-                GetArduinoParametres();
+                if (arduinoPort.IsOpen)
+                {
+                    arduinoPort.WriteLine("T");
+                }
                 minuteTimer = 0;
             }
             minuteTimer++;
@@ -211,14 +235,13 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+            getAvailablePortNames();
+
 
             p1 = new MultipleSlidingPanels(ref panelControlParametres, ref btnControlParametres, ref btnPreviewReports, ref btnAppConfig);
             p2 = new MultipleSlidingPanels(ref panelPreviewReports, ref btnPreviewReports, ref btnControlParametres, ref btnAppConfig);
             p3 = new MultipleSlidingPanels(ref panelAppConfig, ref btnAppConfig, ref btnControlParametres, ref btnPreviewReports);
             pB1 = new ButtonHover(ref ExitButton);
-            OpenCOMPort();
-            nanoPort.DiscardInBuffer();
-            Task delayTask = GetArduinoParametres();
         }
 
 

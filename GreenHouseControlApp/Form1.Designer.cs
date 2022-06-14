@@ -47,11 +47,18 @@ namespace WindowsFormsApp1
             this.CO2Value = new System.Windows.Forms.Label();
             this.labelCO2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.temperatureValue = new System.Windows.Forms.Label();
+            this.temperatureValue = new System.Windows.Forms.TextBox();
+            this.COMresponsetime = new System.Windows.Forms.Label();
             this.labelTemperature = new System.Windows.Forms.Label();
             this.panelPreviewReports = new System.Windows.Forms.Panel();
             this.panelAppConfig = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.warningPort = new System.Windows.Forms.Label();
+            this.btnClosePort = new System.Windows.Forms.Button();
+            this.btnOpenPort = new System.Windows.Forms.Button();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.availablePortsBox = new System.Windows.Forms.ComboBox();
+            this.labelSerialPort = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.GreeHouseCommunicationFrequencyChoice = new System.Windows.Forms.ComboBox();
             this.radioF = new System.Windows.Forms.RadioButton();
@@ -61,7 +68,7 @@ namespace WindowsFormsApp1
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelBaudRate = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelConfig = new System.Windows.Forms.Label();
             this.labelAppName = new System.Windows.Forms.Label();
@@ -69,7 +76,7 @@ namespace WindowsFormsApp1
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ExitButton = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.COMresponsetime = new System.Windows.Forms.Label();
+            this.arduinoPort = new System.IO.Ports.SerialPort(this.components);
             this.panelMenu.SuspendLayout();
             this.panelControlParametres.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -273,8 +280,8 @@ namespace WindowsFormsApp1
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
-            this.panel1.Controls.Add(this.COMresponsetime);
             this.panel1.Controls.Add(this.temperatureValue);
+            this.panel1.Controls.Add(this.COMresponsetime);
             this.panel1.Controls.Add(this.labelTemperature);
             this.panel1.Location = new System.Drawing.Point(36, 17);
             this.panel1.Name = "panel1";
@@ -283,14 +290,25 @@ namespace WindowsFormsApp1
             // 
             // temperatureValue
             // 
-            this.temperatureValue.AutoSize = true;
-            this.temperatureValue.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.temperatureValue.Location = new System.Drawing.Point(5, 40);
+            this.temperatureValue.BackColor = System.Drawing.Color.LightCyan;
+            this.temperatureValue.Enabled = false;
+            this.temperatureValue.Font = new System.Drawing.Font("Montserrat", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.temperatureValue.Location = new System.Drawing.Point(11, 45);
             this.temperatureValue.Name = "temperatureValue";
-            this.temperatureValue.Size = new System.Drawing.Size(49, 22);
-            this.temperatureValue.TabIndex = 2;
-            this.temperatureValue.Text = "xx.xx";
-            this.temperatureValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.temperatureValue.Size = new System.Drawing.Size(79, 33);
+            this.temperatureValue.TabIndex = 4;
+            this.temperatureValue.TextChanged += new System.EventHandler(this.temperatureValue_TextChanged);
+            // 
+            // COMresponsetime
+            // 
+            this.COMresponsetime.AutoSize = true;
+            this.COMresponsetime.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.COMresponsetime.Location = new System.Drawing.Point(398, 247);
+            this.COMresponsetime.Name = "COMresponsetime";
+            this.COMresponsetime.Size = new System.Drawing.Size(49, 22);
+            this.COMresponsetime.TabIndex = 3;
+            this.COMresponsetime.Text = "xx.xx";
+            this.COMresponsetime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelTemperature
             // 
@@ -325,6 +343,12 @@ namespace WindowsFormsApp1
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel5.Controls.Add(this.warningPort);
+            this.panel5.Controls.Add(this.btnClosePort);
+            this.panel5.Controls.Add(this.btnOpenPort);
+            this.panel5.Controls.Add(this.comboBox3);
+            this.panel5.Controls.Add(this.availablePortsBox);
+            this.panel5.Controls.Add(this.labelSerialPort);
             this.panel5.Controls.Add(this.comboBox2);
             this.panel5.Controls.Add(this.GreeHouseCommunicationFrequencyChoice);
             this.panel5.Controls.Add(this.radioF);
@@ -334,13 +358,90 @@ namespace WindowsFormsApp1
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.labelBaudRate);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.labelConfig);
             this.panel5.Location = new System.Drawing.Point(45, 30);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(912, 612);
             this.panel5.TabIndex = 0;
+            // 
+            // warningPort
+            // 
+            this.warningPort.AutoSize = true;
+            this.warningPort.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.warningPort.ForeColor = System.Drawing.Color.DarkRed;
+            this.warningPort.Location = new System.Drawing.Point(528, 170);
+            this.warningPort.Name = "warningPort";
+            this.warningPort.Size = new System.Drawing.Size(0, 22);
+            this.warningPort.TabIndex = 24;
+            this.warningPort.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnClosePort
+            // 
+            this.btnClosePort.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClosePort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnClosePort.Enabled = false;
+            this.btnClosePort.FlatAppearance.BorderSize = 0;
+            this.btnClosePort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClosePort.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnClosePort.ForeColor = System.Drawing.Color.Black;
+            this.btnClosePort.Location = new System.Drawing.Point(401, 168);
+            this.btnClosePort.Name = "btnClosePort";
+            this.btnClosePort.Size = new System.Drawing.Size(121, 26);
+            this.btnClosePort.TabIndex = 23;
+            this.btnClosePort.Text = "Zamknij";
+            this.btnClosePort.UseVisualStyleBackColor = false;
+            this.btnClosePort.Click += new System.EventHandler(this.btnClosePort_Click);
+            // 
+            // btnOpenPort
+            // 
+            this.btnOpenPort.BackColor = System.Drawing.SystemColors.Control;
+            this.btnOpenPort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOpenPort.FlatAppearance.BorderSize = 0;
+            this.btnOpenPort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenPort.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnOpenPort.ForeColor = System.Drawing.Color.Black;
+            this.btnOpenPort.Location = new System.Drawing.Point(274, 168);
+            this.btnOpenPort.Name = "btnOpenPort";
+            this.btnOpenPort.Size = new System.Drawing.Size(121, 26);
+            this.btnOpenPort.TabIndex = 22;
+            this.btnOpenPort.Text = "Otwórz";
+            this.btnOpenPort.UseVisualStyleBackColor = false;
+            this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox3.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(108, 200);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 24);
+            this.comboBox3.TabIndex = 21;
+            // 
+            // availablePortsBox
+            // 
+            this.availablePortsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.availablePortsBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.availablePortsBox.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.availablePortsBox.FormattingEnabled = true;
+            this.availablePortsBox.Location = new System.Drawing.Point(146, 170);
+            this.availablePortsBox.Name = "availablePortsBox";
+            this.availablePortsBox.Size = new System.Drawing.Size(121, 24);
+            this.availablePortsBox.TabIndex = 20;
+            // 
+            // labelSerialPort
+            // 
+            this.labelSerialPort.AutoSize = true;
+            this.labelSerialPort.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelSerialPort.Location = new System.Drawing.Point(3, 170);
+            this.labelSerialPort.Name = "labelSerialPort";
+            this.labelSerialPort.Size = new System.Drawing.Size(139, 22);
+            this.labelSerialPort.TabIndex = 19;
+            this.labelSerialPort.Text = "Port Szeregowy:";
+            this.labelSerialPort.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBox2
             // 
@@ -352,6 +453,8 @@ namespace WindowsFormsApp1
             // 
             // GreeHouseCommunicationFrequencyChoice
             // 
+            this.GreeHouseCommunicationFrequencyChoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GreeHouseCommunicationFrequencyChoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GreeHouseCommunicationFrequencyChoice.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.GreeHouseCommunicationFrequencyChoice.FormattingEnabled = true;
             this.GreeHouseCommunicationFrequencyChoice.Items.AddRange(new object[] {
@@ -420,7 +523,7 @@ namespace WindowsFormsApp1
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(3, 111);
+            this.label5.Location = new System.Drawing.Point(3, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(199, 22);
             this.label5.TabIndex = 10;
@@ -431,7 +534,7 @@ namespace WindowsFormsApp1
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(3, 141);
+            this.label4.Location = new System.Drawing.Point(657, 318);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 22);
             this.label4.TabIndex = 9;
@@ -442,23 +545,23 @@ namespace WindowsFormsApp1
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(3, 171);
+            this.label3.Location = new System.Drawing.Point(657, 360);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 22);
             this.label3.TabIndex = 8;
             this.label3.Text = "data i godzina";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // labelBaudRate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(3, 201);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 22);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "data i godzina";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelBaudRate.AutoSize = true;
+            this.labelBaudRate.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelBaudRate.Location = new System.Drawing.Point(4, 200);
+            this.labelBaudRate.Name = "labelBaudRate";
+            this.labelBaudRate.Size = new System.Drawing.Size(98, 22);
+            this.labelBaudRate.TabIndex = 7;
+            this.labelBaudRate.Text = "Baud Rate:";
+            this.labelBaudRate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -539,16 +642,9 @@ namespace WindowsFormsApp1
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // COMresponsetime
+            // arduinoPort
             // 
-            this.COMresponsetime.AutoSize = true;
-            this.COMresponsetime.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.COMresponsetime.Location = new System.Drawing.Point(398, 247);
-            this.COMresponsetime.Name = "COMresponsetime";
-            this.COMresponsetime.Size = new System.Drawing.Size(49, 22);
-            this.COMresponsetime.TabIndex = 3;
-            this.COMresponsetime.Text = "xx.xx";
-            this.COMresponsetime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.arduinoPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.arduinoPort_DataReceived);
             // 
             // Form1
             // 
@@ -613,7 +709,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label labelCO2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label CO2Value;
-        private System.Windows.Forms.Label temperatureValue;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label DateHour;
         private System.Windows.Forms.Panel panel5;
@@ -623,7 +718,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelBaudRate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioF;
         private System.Windows.Forms.RadioButton radioC;
@@ -632,6 +727,14 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label labelDisplayUpdateTime;
         private System.Windows.Forms.Label humidityValue;
         private System.Windows.Forms.Label COMresponsetime;
+        private System.Windows.Forms.Label labelSerialPort;
+        private System.Windows.Forms.Button btnClosePort;
+        private System.Windows.Forms.Button btnOpenPort;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox availablePortsBox;
+        private System.IO.Ports.SerialPort arduinoPort;
+        private System.Windows.Forms.Label warningPort;
+        private System.Windows.Forms.TextBox temperatureValue;
     }
 }
 
