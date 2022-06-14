@@ -11,6 +11,13 @@ void setup() {
    Serial.begin(9600);
    sensor.begin();
    sensor.wakeup();
+
+     while((id = sensor.getDeviceID()) == 0){
+    Serial.println("ID retrieval error, please check whether the device is connected correctly!!!");
+    delay(10);
+  }
+  delay(1000);
+  Serial.print("id :0x"); Serial.println(id, HEX);
 }
 
 void loop() {
@@ -37,7 +44,6 @@ void loop() {
            else  
             {
               Serial.println(temperature, 1);
-              delay(1000);
             }
         }
         if (receiveVal.startsWith("H"))
@@ -50,7 +56,6 @@ void loop() {
            else  
             {
               Serial.println(humidity, 1);
-              delay(1000);
             }
         }
 
