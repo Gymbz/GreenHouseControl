@@ -39,6 +39,12 @@ namespace WindowsFormsApp1
             this.panelControlParametres = new System.Windows.Forms.Panel();
             this.labelDisplayUpdateTime = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.setHumidity = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.humidityUnit1 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.increaseHumidity = new System.Windows.Forms.Button();
+            this.decreaseHumidity = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.humidityUnit = new System.Windows.Forms.Label();
             this.humidityValue = new System.Windows.Forms.TextBox();
@@ -48,8 +54,8 @@ namespace WindowsFormsApp1
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelCO2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.setTemperature = new System.Windows.Forms.TextBox();
             this.applyTemperatureSettings = new System.Windows.Forms.Button();
-            this.setTemperature = new System.Windows.Forms.Label();
             this.temperatureUnit1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -204,6 +210,12 @@ namespace WindowsFormsApp1
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
+            this.panel4.Controls.Add(this.setHumidity);
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.humidityUnit1);
+            this.panel4.Controls.Add(this.label11);
+            this.panel4.Controls.Add(this.increaseHumidity);
+            this.panel4.Controls.Add(this.decreaseHumidity);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.humidityUnit);
             this.panel4.Controls.Add(this.humidityValue);
@@ -212,6 +224,80 @@ namespace WindowsFormsApp1
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(450, 270);
             this.panel4.TabIndex = 4;
+            // 
+            // setHumidity
+            // 
+            this.setHumidity.BackColor = System.Drawing.Color.LightCyan;
+            this.setHumidity.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.setHumidity.Enabled = false;
+            this.setHumidity.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.setHumidity.Location = new System.Drawing.Point(126, 144);
+            this.setHumidity.Name = "setHumidity";
+            this.setHumidity.Size = new System.Drawing.Size(79, 33);
+            this.setHumidity.TabIndex = 18;
+            this.setHumidity.Text = "20.0";
+            this.setHumidity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Azure;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(297, 221);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 25);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Zastosuj";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // humidityUnit1
+            // 
+            this.humidityUnit1.AutoSize = true;
+            this.humidityUnit1.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.humidityUnit1.Location = new System.Drawing.Point(237, 142);
+            this.humidityUnit1.Name = "humidityUnit1";
+            this.humidityUnit1.Size = new System.Drawing.Size(35, 33);
+            this.humidityUnit1.TabIndex = 17;
+            this.humidityUnit1.Text = "%";
+            this.humidityUnit1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(4, 146);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(81, 22);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "Kontrola:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // increaseHumidity
+            // 
+            this.increaseHumidity.BackColor = System.Drawing.Color.Azure;
+            this.increaseHumidity.FlatAppearance.BorderSize = 0;
+            this.increaseHumidity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.increaseHumidity.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.increaseHumidity.Location = new System.Drawing.Point(211, 148);
+            this.increaseHumidity.Name = "increaseHumidity";
+            this.increaseHumidity.Size = new System.Drawing.Size(25, 25);
+            this.increaseHumidity.TabIndex = 14;
+            this.increaseHumidity.Text = "+";
+            this.increaseHumidity.UseVisualStyleBackColor = false;
+            // 
+            // decreaseHumidity
+            // 
+            this.decreaseHumidity.BackColor = System.Drawing.Color.Azure;
+            this.decreaseHumidity.FlatAppearance.BorderSize = 0;
+            this.decreaseHumidity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.decreaseHumidity.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.decreaseHumidity.Location = new System.Drawing.Point(95, 148);
+            this.decreaseHumidity.Name = "decreaseHumidity";
+            this.decreaseHumidity.Size = new System.Drawing.Size(25, 25);
+            this.decreaseHumidity.TabIndex = 13;
+            this.decreaseHumidity.Text = "-";
+            this.decreaseHumidity.UseVisualStyleBackColor = false;
             // 
             // label9
             // 
@@ -228,7 +314,7 @@ namespace WindowsFormsApp1
             // 
             this.humidityUnit.AutoSize = true;
             this.humidityUnit.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.humidityUnit.Location = new System.Drawing.Point(240, 63);
+            this.humidityUnit.Location = new System.Drawing.Point(211, 64);
             this.humidityUnit.Name = "humidityUnit";
             this.humidityUnit.Size = new System.Drawing.Size(35, 33);
             this.humidityUnit.TabIndex = 6;
@@ -241,11 +327,11 @@ namespace WindowsFormsApp1
             this.humidityValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.humidityValue.Enabled = false;
             this.humidityValue.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.humidityValue.Location = new System.Drawing.Point(155, 64);
+            this.humidityValue.Location = new System.Drawing.Point(126, 64);
             this.humidityValue.Name = "humidityValue";
             this.humidityValue.Size = new System.Drawing.Size(79, 33);
             this.humidityValue.TabIndex = 5;
-            this.humidityValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.humidityValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.humidityValue.TextChanged += new System.EventHandler(this.humidityValue_TextChanged);
             // 
             // labelHumidity
@@ -302,8 +388,8 @@ namespace WindowsFormsApp1
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(210)))), ((int)(((byte)(190)))));
-            this.panel1.Controls.Add(this.applyTemperatureSettings);
             this.panel1.Controls.Add(this.setTemperature);
+            this.panel1.Controls.Add(this.applyTemperatureSettings);
             this.panel1.Controls.Add(this.temperatureUnit1);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label2);
@@ -316,6 +402,19 @@ namespace WindowsFormsApp1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 270);
             this.panel1.TabIndex = 1;
+            // 
+            // setTemperature
+            // 
+            this.setTemperature.BackColor = System.Drawing.Color.LightCyan;
+            this.setTemperature.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.setTemperature.Enabled = false;
+            this.setTemperature.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.setTemperature.Location = new System.Drawing.Point(126, 144);
+            this.setTemperature.Name = "setTemperature";
+            this.setTemperature.Size = new System.Drawing.Size(79, 33);
+            this.setTemperature.TabIndex = 12;
+            this.setTemperature.Text = "20.0";
+            this.setTemperature.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // applyTemperatureSettings
             // 
@@ -331,22 +430,11 @@ namespace WindowsFormsApp1
             this.applyTemperatureSettings.UseVisualStyleBackColor = false;
             this.applyTemperatureSettings.Click += new System.EventHandler(this.applyTemperatureSettings_Click);
             // 
-            // setTemperature
-            // 
-            this.setTemperature.AutoSize = true;
-            this.setTemperature.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.setTemperature.Location = new System.Drawing.Point(123, 142);
-            this.setTemperature.Name = "setTemperature";
-            this.setTemperature.Size = new System.Drawing.Size(68, 33);
-            this.setTemperature.TabIndex = 12;
-            this.setTemperature.Text = "00.0";
-            this.setTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // temperatureUnit1
             // 
             this.temperatureUnit1.AutoSize = true;
             this.temperatureUnit1.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.temperatureUnit1.Location = new System.Drawing.Point(228, 142);
+            this.temperatureUnit1.Location = new System.Drawing.Point(237, 142);
             this.temperatureUnit1.Name = "temperatureUnit1";
             this.temperatureUnit1.Size = new System.Drawing.Size(42, 33);
             this.temperatureUnit1.TabIndex = 11;
@@ -357,7 +445,7 @@ namespace WindowsFormsApp1
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(5, 146);
+            this.label8.Location = new System.Drawing.Point(4, 146);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 22);
             this.label8.TabIndex = 10;
@@ -381,7 +469,7 @@ namespace WindowsFormsApp1
             this.increaseTemperature.FlatAppearance.BorderSize = 0;
             this.increaseTemperature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.increaseTemperature.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.increaseTemperature.Location = new System.Drawing.Point(197, 148);
+            this.increaseTemperature.Location = new System.Drawing.Point(211, 148);
             this.increaseTemperature.Name = "increaseTemperature";
             this.increaseTemperature.Size = new System.Drawing.Size(25, 25);
             this.increaseTemperature.TabIndex = 6;
@@ -394,7 +482,7 @@ namespace WindowsFormsApp1
             this.decreaseTemperature.FlatAppearance.BorderSize = 0;
             this.decreaseTemperature.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.decreaseTemperature.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.decreaseTemperature.Location = new System.Drawing.Point(92, 148);
+            this.decreaseTemperature.Location = new System.Drawing.Point(95, 148);
             this.decreaseTemperature.Name = "decreaseTemperature";
             this.decreaseTemperature.Size = new System.Drawing.Size(25, 25);
             this.decreaseTemperature.TabIndex = 5;
@@ -405,7 +493,7 @@ namespace WindowsFormsApp1
             // 
             this.temperatureUnit.AutoSize = true;
             this.temperatureUnit.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.temperatureUnit.Location = new System.Drawing.Point(202, 63);
+            this.temperatureUnit.Location = new System.Drawing.Point(211, 64);
             this.temperatureUnit.Name = "temperatureUnit";
             this.temperatureUnit.Size = new System.Drawing.Size(42, 33);
             this.temperatureUnit.TabIndex = 1;
@@ -418,11 +506,11 @@ namespace WindowsFormsApp1
             this.temperatureValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.temperatureValue.Enabled = false;
             this.temperatureValue.Font = new System.Drawing.Font("Montserrat", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.temperatureValue.Location = new System.Drawing.Point(117, 63);
+            this.temperatureValue.Location = new System.Drawing.Point(126, 63);
             this.temperatureValue.Name = "temperatureValue";
             this.temperatureValue.Size = new System.Drawing.Size(79, 33);
             this.temperatureValue.TabIndex = 4;
-            this.temperatureValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.temperatureValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.temperatureValue.TextChanged += new System.EventHandler(this.temperatureValue_TextChanged);
             // 
             // labelTemperature
@@ -856,8 +944,14 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label temperatureUnit1;
-        private System.Windows.Forms.Label setTemperature;
         private System.Windows.Forms.Button applyTemperatureSettings;
+        private System.Windows.Forms.TextBox setTemperature;
+        private System.Windows.Forms.TextBox setHumidity;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label humidityUnit1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button increaseHumidity;
+        private System.Windows.Forms.Button decreaseHumidity;
     }
 }
 

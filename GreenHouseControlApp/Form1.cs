@@ -130,16 +130,20 @@ namespace WindowsFormsApp1
         #endregion
 
         #region ParameterControl
-        float measuredTemperature;
-        float measuredHumidity;
-        float measuredCO2;
-        float measuredN2;
 
 
-        Parameter Temperature;
-        Parameter Humidity;
-        Parameter CO2;
-        Parameter N2;
+        Parameter temperature;
+        Parameter humidity;
+
+        //  not used because of hardware limitations
+        Parameter co2;
+        Parameter n2;
+
+
+        //  step of how much we increase or decrease wanted value of parametres
+        float stepTemperature = 0.1f;
+        float stepHumidity = 1;
+
 
 
         #endregion
@@ -232,7 +236,9 @@ namespace WindowsFormsApp1
 
         private void applyTemperatureSettings_Click(object sender, EventArgs e)
         {
-            //measuredTemperature = (float)Convert.ToDouble(temperatureValue.Text);
+            //  Here should be code that sends special message to Arduino via serialport.
+            //  This message should have the value of Temperature user wants in the Greenhouse,
+            //  the whole control of the greenhouse should be in the Arduino
         }
 
 
@@ -280,7 +286,9 @@ namespace WindowsFormsApp1
             p2 = new MultipleSlidingPanels(ref panelPreviewReports, ref btnPreviewReports, ref btnControlParametres, ref btnAppConfig);
             p3 = new MultipleSlidingPanels(ref panelAppConfig, ref btnAppConfig, ref btnControlParametres, ref btnPreviewReports);
             pB1 = new ButtonHover(ref ExitButton);
-            //Temperature = new Parameter(ref measuredTemperature, ref setTemperature, ref increaseTemperature, ref decreaseTemperature);
+
+            temperature = new Parameter(ref setTemperature, ref increaseTemperature, ref decreaseTemperature, ref stepTemperature);
+            humidity = new Parameter(ref setHumidity, ref increaseHumidity, ref decreaseHumidity, ref stepHumidity);
         }
 
 
