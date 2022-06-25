@@ -20,10 +20,11 @@ namespace WindowsFormsApp1
         public int countdownTimer = updateCountdownTimer;
 
         MultipleSlidingPanels p1, p2, p3;
-        ButtonHover pB1;
+        ButtonHover pB1,pB2;
 
         string serialDataIn1;
         string serialDataIn2;
+
 
         #region TopBar
         //  This section is responsible for moving the window of the app with mouse and for
@@ -144,6 +145,11 @@ namespace WindowsFormsApp1
         float stepTemperature = 0.1f;
         float stepHumidity = 1;
 
+        float measuredTemperatureValue;
+        float measuredHumidityValue;
+        float setTemperatureValue;
+        float setHumidityValue;
+
 
 
         #endregion
@@ -153,6 +159,7 @@ namespace WindowsFormsApp1
         {
             string[] portNames = SerialPort.GetPortNames();
             availablePortsBox.Items.AddRange(portNames);
+
         }
         private void btnOpenPort_Click(object sender, EventArgs e)
         {
@@ -261,11 +268,13 @@ namespace WindowsFormsApp1
             labelDisplayUpdateTime.Text = string.Format("Czas do następnej aktualizacji: {0}", strRemaining);  
               
             //  Update parametres from Arduino (via serial port)
-            if (minuteTimer > updateCountdownTimer)
+            //  Note: Update delay is arround 2 seconds
+            if (minuteTimer > updateCountdownTimer -2)
             {
                 if (arduinoPort.IsOpen)
                 {
                     arduinoPort.WriteLine("T");
+                    saveDataToDataBase();
                 }
                 minuteTimer = 0;
             }
@@ -273,19 +282,23 @@ namespace WindowsFormsApp1
 
         }
 
-   
-
+        private void saveDataToDataBase()
+        {
+               
+        }
 
         public Form1()
         {
             InitializeComponent();
             getAvailablePortNames();
+            
 
 
             p1 = new MultipleSlidingPanels(ref panelControlParametres, ref btnControlParametres, ref btnPreviewReports, ref btnAppConfig);
             p2 = new MultipleSlidingPanels(ref panelPreviewReports, ref btnPreviewReports, ref btnControlParametres, ref btnAppConfig);
             p3 = new MultipleSlidingPanels(ref panelAppConfig, ref btnAppConfig, ref btnControlParametres, ref btnPreviewReports);
             pB1 = new ButtonHover(ref ExitButton);
+            pB2 = new ButtonHover(ref FullScreenButton);
 
             temperature = new Parameter(ref setTemperature, ref increaseTemperature, ref decreaseTemperature, ref stepTemperature);
             humidity = new Parameter(ref setHumidity, ref increaseHumidity, ref decreaseHumidity, ref stepHumidity);

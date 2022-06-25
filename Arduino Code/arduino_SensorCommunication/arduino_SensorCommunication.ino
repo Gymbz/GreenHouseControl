@@ -13,11 +13,8 @@ void setup() {
    sensor.wakeup();
 
      while((id = sensor.getDeviceID()) == 0){
-    Serial.println("ID retrieval error, please check whether the device is connected correctly!!!");
     delay(10);
   }
-  delay(1000);
-  Serial.print("id :0x"); Serial.println(id, HEX);
 }
 
 void loop() {
