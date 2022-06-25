@@ -10,20 +10,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
+using System.Data.SqlClient;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+
+        CultureInfo currentCulture = CultureInfo.GetCultureInfo("en-US");
+        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=H:\\Studia\\POS\\GreenHouseControl\\GreenHouseControlApp\\Measurements.mdf;Integrated Security=True");
+
+
         public static int minuteTimer = 0;
         public static int updateCountdownTimer;
         public int countdownTimer = updateCountdownTimer;
 
         MultipleSlidingPanels p1, p2, p3;
-        ButtonHover pB1,pB2;
+        ButtonHover pB1;
 
         string serialDataIn1;
         string serialDataIn2;
+
 
 
         #region TopBar
@@ -150,6 +158,8 @@ namespace WindowsFormsApp1
         float setTemperatureValue;
         float setHumidityValue;
 
+        DateTime dateTime;
+
 
 
         #endregion
@@ -209,6 +219,9 @@ namespace WindowsFormsApp1
 
             humidityValue.Text = "";
             humidityValue.Text += serialDataIn2;
+
+            saveDataToDataBase();
+
         }
 
         #endregion
@@ -219,15 +232,10 @@ namespace WindowsFormsApp1
             //Initialize all config
             GreeHouseCommunicationFrequencyChoice.SelectedIndex = 1;
 
-
-
             timer1.Start();
 
 
         }
-
-
-
 
         private void temperatureValue_TextChanged(object sender, EventArgs e)
         {
@@ -246,6 +254,44 @@ namespace WindowsFormsApp1
             //  Here should be code that sends special message to Arduino via serialport.
             //  This message should have the value of Temperature user wants in the Greenhouse,
             //  the whole control of the greenhouse should be in the Arduino
+        }
+
+        private void btnPreviewReports_Click(object sender, EventArgs e)
+        {
+            SqlDataAdapter da = new SqlDataAdapter();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "select TempeatureMeasured ,TemperatureSet,HumidityMeasured,HumiditySet, TimeOfMeasurement from dbo.Measurement";
+            da.SelectCommand = cmd;
+            DataSet ds = new DataSet();
+
+            con.Open();
+            da.Fill(ds);
+            this.ChartTemperature.DataSource = ds.Tables[0];
+            this.ChartHumidity.DataSource = ds.Tables[0];
+
+            //Mapping a field with x-value of chart
+            this.ChartTemperature.Series[0].XValueMember = "TimeOfMeasurement";
+            this.ChartTemperature.Series[1].XValueMember = "TimeOfMeasurement";
+            this.ChartHumidity.Series[0].XValueMember = "TimeOfMeasurement";
+            this.ChartHumidity.Series[1].XValueMember = "TimeOfMeasurement";
+
+
+            //Mapping a field with y-value of Chart
+            this.ChartTemperature.Series[0].YValueMembers = "TempeatureMeasured";
+            this.ChartTemperature.Series[1].YValueMembers = "TemperatureSet";
+            this.ChartHumidity.Series[0].YValueMembers = "HumidityMeasured";
+            this.ChartHumidity.Series[1].YValueMembers = "HumiditySet";
+
+
+            //Bind the DataTable with Chart
+            this.ChartTemperature.DataBind();
+
+            con.Close();
+
+
+
+
+
         }
 
 
@@ -274,7 +320,6 @@ namespace WindowsFormsApp1
                 if (arduinoPort.IsOpen)
                 {
                     arduinoPort.WriteLine("T");
-                    saveDataToDataBase();
                 }
                 minuteTimer = 0;
             }
@@ -284,7 +329,37 @@ namespace WindowsFormsApp1
 
         private void saveDataToDataBase()
         {
-               
+
+            //  Convert displayed values to float
+            measuredTemperatureValue = float.Parse(temperatureValue.Text, currentCulture);
+            setTemperatureValue = float.Parse(setTemperature.Text, currentCulture);
+            measuredHumidityValue = float.Parse(humidityValue.Text, currentCulture);
+            setHumidityValue = float.Parse(setHumidity.Text, currentCulture);
+            dateTime = DateTime.Now;
+
+            //  Table Columns:
+            //[TempeatureMeasured] FLOAT(53) NOT NULL,
+            //[TemperatureSet]     FLOAT(53) NOT NULL,
+            //[HumidityMeasured]   FLOAT(53) NOT NULL,
+            //[HumiditySet]        FLOAT(53) NOT NULL,
+            //[TimeOfMeasurement]  DATETIME NOT NULL, 
+
+
+            string sqlQuery = "INSERT INTO Measurement VALUES (@measuredTemperatureValue, @setTemperatureValue, @measuredHumidityValue, @setHumidityValue, @dateTime)";
+
+       
+
+            con.Open();
+            SqlCommand sc = new SqlCommand(sqlQuery, con);
+
+            sc.Parameters.AddWithValue("@measuredTemperatureValue", measuredTemperatureValue);
+            sc.Parameters.AddWithValue("@setTemperatureValue", setTemperatureValue);
+            sc.Parameters.AddWithValue("@measuredHumidityValue", measuredHumidityValue);
+            sc.Parameters.AddWithValue("@setHumidityValue", setHumidityValue);
+            sc.Parameters.AddWithValue("@dateTime", dateTime);
+
+            sc.ExecuteNonQuery();
+            con.Close();
         }
 
         public Form1()
@@ -297,8 +372,8 @@ namespace WindowsFormsApp1
             p1 = new MultipleSlidingPanels(ref panelControlParametres, ref btnControlParametres, ref btnPreviewReports, ref btnAppConfig);
             p2 = new MultipleSlidingPanels(ref panelPreviewReports, ref btnPreviewReports, ref btnControlParametres, ref btnAppConfig);
             p3 = new MultipleSlidingPanels(ref panelAppConfig, ref btnAppConfig, ref btnControlParametres, ref btnPreviewReports);
+
             pB1 = new ButtonHover(ref ExitButton);
-            pB2 = new ButtonHover(ref FullScreenButton);
 
             temperature = new Parameter(ref setTemperature, ref increaseTemperature, ref decreaseTemperature, ref stepTemperature);
             humidity = new Parameter(ref setHumidity, ref increaseHumidity, ref decreaseHumidity, ref stepHumidity);
