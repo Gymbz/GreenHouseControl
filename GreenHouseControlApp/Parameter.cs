@@ -18,9 +18,11 @@ namespace WindowsFormsApp1
         CultureInfo currentCulture = CultureInfo.GetCultureInfo("en-US");
 
         float currentSetValue = 20.00f;
+        float currentMeasuredValue;
         float amount;
 
         string currentSetValueString;
+        string currentMeasuredValueString;
 
         public Parameter(ref TextBox setParameter, ref Button inV, ref Button decV, ref float step)
         {
@@ -28,6 +30,7 @@ namespace WindowsFormsApp1
             this.increaseValue = inV;
             this.decreaseValue = decV;
             this.amount = step;
+
 
             currentSetValueString = Convert.ToString((currentSetValue).ToString("0.0",currentCulture));
             setParameter.Text = String.Format("{0:F1}", currentSetValueString);
